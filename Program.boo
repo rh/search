@@ -21,22 +21,20 @@ if "-v" in argv or "--version" in argv:
     print VERSION
     return
 
-options = Options()
+search = Search()
 
 for arg in argv:
     if arg == "-r" or arg == "--recursive":
-        options.Recursive = true
+        search.Recursive = true
     elif arg == "-m" or arg == "--match-only":
-        options.MatchOnly = true
+        search.MatchOnly = true
     elif arg == "-l" or arg == "--files-with-matches":
-        options.FileOnly = true
+        search.FileOnly = true
     else:
-        options.File    = arg if options.Pattern != ""
-        options.Pattern = arg if options.Pattern == ""
+        search.FilePattern = arg if search.Pattern != ""
+        search.Pattern     = arg if search.Pattern == ""
 
-options.Regex = Regex(options.Pattern)
-
-Search DirectoryInfo("."), options
+search.Search(".")
 
 print
-print "Searched ${options.FileCount} files"
+print "Searched ${search.FileCount} files"
