@@ -38,10 +38,10 @@ class Search:
                     matches = Regex.Matches(line)
                     if matches.Count > 0:
                         if FileOnly:
-                            PrintFile file
+                            PrintFile file, false
                             break
                         if not filename_shown:
-                            PrintFile file
+                            PrintFile file, true
                         if MatchOnly:
                             PrintLineNumber line_number
                             for match as Match in matches:

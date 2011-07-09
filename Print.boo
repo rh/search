@@ -1,7 +1,7 @@
 import System.Console
 import System.IO
 
-def PrintFile(file as FileInfo):
+def PrintFile(file as FileInfo, show_colon):
     color = ForegroundColor
     ForegroundColor = ConsoleColor.DarkYellow
 
@@ -11,8 +11,10 @@ def PrintFile(file as FileInfo):
     else:
         Write file.FullName
 
-    ForegroundColor = ConsoleColor.DarkGray
-    WriteLine ":"
+    if show_colon:
+        ForegroundColor = ConsoleColor.DarkGray
+        Write ":"
+    WriteLine
     ForegroundColor = color
 
 def PrintLineNumber(line_number):
