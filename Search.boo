@@ -61,19 +61,17 @@ class Search:
                 Search(subdirectory)
 
     def PrintMatches(line as string, matches as MatchCollection):
-        characters = {}
-        for i in range(0, line.Length):
-            characters[i] = false
+        characters = []
 
         for match as Match in matches:
             for i in range(match.Index, match.Index + match.Length):
-                characters[i] = true
+                characters.Add(i)
 
         fg = ForegroundColor
         bg = BackgroundColor
 
         for i in range(0, line.Length):
-            if characters[i] == true:
+            if i in characters:
                 ForegroundColor = ConsoleColor.White
                 BackgroundColor = ConsoleColor.DarkGray
             else:
