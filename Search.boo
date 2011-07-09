@@ -7,7 +7,7 @@ class Search:
     public IgnoredDirectories = [".git", ".svn", "bin", "obj"]
     public IgnoredExtensions = [".dll", ".exe", ".pdb", ".mdb", ".zip"]
     private Regex = Regex(".")
-    public FilePattern = ""
+    public FilePattern = "*"
     public FileCount = 0
     public Recursive = false
     public MatchOnly = false
