@@ -1,3 +1,5 @@
+import System.Console
+
 VERSION = "0.1"
 
 HELP = """Usage: search [options] <pattern> [file]
@@ -37,4 +39,32 @@ for arg in argv:
 search.Search(".")
 
 print
-print "Searched ${search.FileCount} files"
+
+fg = ForegroundColor
+
+if search.FileOnly:
+    Write "Found matches in "
+    ForegroundColor = ConsoleColor.DarkYellow
+    Write search.FileMatchCount
+    ForegroundColor = fg
+    Write " of "
+    ForegroundColor = ConsoleColor.DarkYellow
+    Write search.FileCount
+    ForegroundColor = fg
+    WriteLine " files"
+else:
+    Write "Found "
+    ForegroundColor = ConsoleColor.DarkYellow
+    Write search.MatchCount
+    ForegroundColor = fg
+    Write " matches in "
+    ForegroundColor = ConsoleColor.DarkYellow
+    Write search.FileMatchCount
+    ForegroundColor = fg
+    Write " of "
+    ForegroundColor = ConsoleColor.DarkYellow
+    Write search.FileCount
+    ForegroundColor = fg
+    WriteLine " files"
+
+ForegroundColor = fg

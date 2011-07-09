@@ -9,6 +9,8 @@ class Search:
     private Regex = Regex(".")
     public FilePattern = "*"
     public FileCount = 0
+    public FileMatchCount = 0
+    public MatchCount = 0
     public Recursive = true
     public MatchOnly = false
     public FileOnly = false
@@ -37,10 +39,13 @@ class Search:
                         characters[i] = false
                     matches = Regex.Matches(line)
                     if matches.Count > 0:
+                        MatchCount += matches.Count
                         if FileOnly:
+                            FileMatchCount += 1
                             PrintFile file, false
                             break
                         if not filename_shown:
+                            FileMatchCount += 1
                             PrintFile file, true
                         if MatchOnly:
                             PrintLineNumber line_number
