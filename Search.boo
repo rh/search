@@ -9,7 +9,7 @@ class Search:
     private Regex = Regex(".")
     public FilePattern = "*"
     public FileCount = 0
-    public Recursive = false
+    public Recursive = true
     public MatchOnly = false
     public FileOnly = false
 

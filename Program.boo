@@ -3,10 +3,10 @@ VERSION = "0.1"
 HELP = """Usage: search [options] <pattern> [file]
 Search for <pattern> in [file]
 
-Example: search -r \t{2} *.cs
+Example: search \t{2} *.cs
 
 Options:
-  -r, --recursive            Recurse into subdirectories
+  -n, --non-recursive        Do not search subdirectories
   -m, --match-only           Only show the match, not the entire line
   -l, --files-with-matches   Only print file names containing matches
 
@@ -24,8 +24,8 @@ if "-v" in argv or "--version" in argv:
 search = Search()
 
 for arg in argv:
-    if arg == "-r" or arg == "--recursive":
-        search.Recursive = true
+    if arg == "-n" or arg == "--non-recursive":
+        search.Recursive = false
     elif arg == "-m" or arg == "--match-only":
         search.MatchOnly = true
     elif arg == "-l" or arg == "--files-with-matches":
