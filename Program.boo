@@ -3,7 +3,7 @@ VERSION = "0.1"
 HELP = """Usage: search [options] <pattern> [file]
 Search for <pattern> in [file]
 
-Example: search -r \\t{2} *.cs
+Example: search -r \t{2} *.cs
 
 Options:
   -r, --recursive            Recurse into subdirectories
