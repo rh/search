@@ -34,9 +34,6 @@ class Search:
             try:
                 for line in File.ReadAllLines(file.FullName):
                     line_number = line_number + 1
-                    characters = {}
-                    for i in range(0, line.Length):
-                        characters[i] = false
                     matches = Regex.Matches(line)
                     if matches.Count > 0:
                         MatchCount += matches.Count
@@ -55,28 +52,38 @@ class Search:
                             print
                         else:
                             PrintLineNumber line_number
-                            for match as Match in matches:
-                                for i in range(match.Index, match.Index + match.Length):
-                                    characters[i] = true
-                            fg = ForegroundColor
-                            bg = BackgroundColor
-                            for i in range(0, line.Length):
-                                if characters[i] == true:
-                                    ForegroundColor = ConsoleColor.White
-                                    BackgroundColor = ConsoleColor.DarkGray
-                                else:
-                                    ForegroundColor = ConsoleColor.DarkGray
-                                    BackgroundColor = bg
-                                if line[i] == char('\t'):
-                                    Write "    "
-                                else:
-                                    Write line[i]
-                            ForegroundColor = fg
-                            BackgroundColor = bg
-                            print
+                            PrintMatches line, matches
                         filename_shown = true
             except e as IOException:
                 pass # Ignore 'The process cannot access the file '...' because it is being used by another process.'
         if Recursive:
             for subdirectory in directory.GetDirectories():
                 Search(subdirectory)
+
+    def PrintMatches(line as string, matches as MatchCollection):
+        characters = {}
+        for i in range(0, line.Length):
+            characters[i] = false
+
+        for match as Match in matches:
+            for i in range(match.Index, match.Index + match.Length):
+                characters[i] = true
+
+        fg = ForegroundColor
+        bg = BackgroundColor
+
+        for i in range(0, line.Length):
+            if characters[i] == true:
+                ForegroundColor = ConsoleColor.White
+                BackgroundColor = ConsoleColor.DarkGray
+            else:
+                ForegroundColor = ConsoleColor.DarkGray
+                BackgroundColor = bg
+            if line[i] == char('\t'):
+                Write "    "
+            else:
+                Write line[i]
+
+        ForegroundColor = fg
+        BackgroundColor = bg
+        print
