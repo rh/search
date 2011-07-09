@@ -62,7 +62,10 @@ class Search:
                                 else:
                                     ForegroundColor = ConsoleColor.DarkGray
                                     BackgroundColor = bg
-                                Write line[i]
+                                if line[i] == char('\t'):
+                                    Write "    "
+                                else:
+                                    Write line[i]
                             ForegroundColor = fg
                             BackgroundColor = bg
                             print
